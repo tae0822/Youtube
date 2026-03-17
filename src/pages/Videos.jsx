@@ -15,8 +15,6 @@ export default function Videos() {
     staleTime: 1000 * 60 * 1,
   });
 
-  console.log('[videos from Video]',videos)
-
   return (
     <>
       {isLoading && <p>Loading...</p>}

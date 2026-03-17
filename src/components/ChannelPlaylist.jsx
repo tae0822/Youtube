@@ -2,15 +2,17 @@ import React from 'react';
 import { useYoutubeApi } from '../context/YoutubeApiContext';
 import { useQuery } from '@tanstack/react-query';
 import VideoCard from './VideoCard';
-export default function RelatedVideos({ id }) {
+export default function ChannelPlaylist({ channelId }) {
   const { youtube } = useYoutubeApi();
   const {
     isLoading,
     error,
     data: videos,
-  } = useQuery(['related', id], () => youtube.relatedVideos(id), {
+  } = useQuery(['channelInfo', channelId], () => youtube.searchByChannelId(channelId), {
     staleTime: 1000 * 60 * 5,
   });
+  console.log('[videos from ChannelPlaylist]', videos)
+  console.log('[channelId from ChannelPlaylist]', channelId)
   return (
     <>
       {isLoading && <p>Loading...</p>}
